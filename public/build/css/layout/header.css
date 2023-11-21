@@ -1,0 +1,2 @@
+header{background-color:#f0f8ff;display:flex;justify-content:space-between;align-items:center;height:100px;padding:10px 10%}.logo{cursor:pointer}.logo img{height:70px;width:auto;transition:all .3s}.logo img:hover{transform:scale(1.2)}.menu{list-style:none}.menu li{display:inline-block;padding:0 20px;transition:all .3s}.menu a{font-size:700;color:#000}.menu li:hover{transform:scale(1.2)}.menu a:hover{color:green}.activate{background-color:green;border-radius:10px}.activate a:hover{color:#f0f8ff}
+/*# sourceMappingURL=header.css.map */

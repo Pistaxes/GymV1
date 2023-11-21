@@ -1,0 +1,13 @@
+{
+    "name": "jonathan/proyecto-gym",
+    "description": "Proyecto PHP",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "MVC\\":"./",
+            "Controllers\\" : "./controllers",
+            "Model\\" : "./models"
+        }
+    },
+    "require": {}
+}
