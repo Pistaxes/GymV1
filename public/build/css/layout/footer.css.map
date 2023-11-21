@@ -1,1 +1,1 @@
-{"version":3,"sources":[],"names":[],"mappings":"","file":"footer.css","sourcesContent":[]}
+{"version":3,"sources":["layout/footer.scss","layout/footer.css"],"names":[],"mappings":"AAAA,QACI,UCCJ","file":"footer.css","sourcesContent":[".footer{\r\n    width: 100%;\r\n    \r\n}",".footer {\n  width: 100%;\n}"]}

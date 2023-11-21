@@ -24,6 +24,6 @@ class LoginController{
        echo 'recuperar';
     }
     public static function crear(Router $router){
-        echo 'recuperar';
+        $router->render('auth/crear-cuenta',[ ]);
      }
 }
