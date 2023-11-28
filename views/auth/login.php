@@ -1,6 +1,9 @@
 <h1 class="login-title">Login</h1>
 
 <p class="welcome">Bienvenido a X Fit Gym</p>
+
+<?php include_once __DIR__ . '/../templates/alertas.php'; ?>
+
 <div class="container-form">
     <form class="formulario" method="POST" action="/">
     
