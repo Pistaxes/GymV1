@@ -20,11 +20,10 @@ class LoginController{
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $auth = new Usuario($_POST);
             
-            $auth->validarLogin();
-
+            $auth->validarLogin(); 
             if(empty($alertas)){
                 $usuario = Usuario::where('email',$auth->email);
-
+                
                 if($usuario){
                     if($usuario->comprobarPasswordAndVerificado($auth->password)){
                         session_start();
@@ -38,9 +37,11 @@ class LoginController{
                             //Admin
                             $_SESSION['admin'] = $usuario->admin ?? null;
                             header('Location: /admin');
+
                         }else{
                             //Cliente
-                            header('Location: /productos');
+                           
+                            header('Location: /producto');
                         }
                     }
 
@@ -190,5 +191,12 @@ class LoginController{
         }
         $alertas= Usuario::getAlertas();
         $router->render('auth/confirmar-cuenta',['alertas'=> $alertas]);
+     }
+
+     public static function contacto(Router $router){
+        $router->render('front/contacto',[]);
+     }
+     public static function nosotros(Router $router){
+        $router->render('front/nosotros',[]);
      }
 }
