@@ -11,6 +11,10 @@ class ComposerStaticInit437d4151b0e1817acffd4ee11bf24df8
     );
 
     public static $prefixLengthsPsr4 = array (
+        'S' => 
+        array (
+            'Stripe\\' => 7,
+        ),
         'P' => 
         array (
             'Psr\\Http\\Message\\' => 17,
@@ -37,10 +41,14 @@ class ComposerStaticInit437d4151b0e1817acffd4ee11bf24df8
     );
 
     public static $prefixDirsPsr4 = array (
+        'Stripe\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/stripe/stripe-php/lib',
+        ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'PHPMailer\\PHPMailer\\' => 
         array (
@@ -72,6 +80,10 @@ class ComposerStaticInit437d4151b0e1817acffd4ee11bf24df8
         ),
     );
 
+    public static $fallbackDirsPsr4 = array (
+        0 => __DIR__ . '/../..' . '/src',
+    );
+
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
@@ -81,6 +93,7 @@ class ComposerStaticInit437d4151b0e1817acffd4ee11bf24df8
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit437d4151b0e1817acffd4ee11bf24df8::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit437d4151b0e1817acffd4ee11bf24df8::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInit437d4151b0e1817acffd4ee11bf24df8::$fallbackDirsPsr4;
             $loader->classMap = ComposerStaticInit437d4151b0e1817acffd4ee11bf24df8::$classMap;
 
         }, null, ClassLoader::class);

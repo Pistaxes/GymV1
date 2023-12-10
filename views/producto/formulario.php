@@ -8,12 +8,24 @@
         <input type="text" name="precio" id="precio" placeholder="precio" value="<?php echo $producto->precio ?>"/>
     </div>
     <div class="campo">
-        <label for="imagen">Imagen</label>
-        <input type="file" name="imagen" accept="image*" >
+        <label for="imagen" class="formulario__label">Imagen</label>
+        <input
+            type="file"
+            class="formulario__input formulario__input--file"
+            id="imagen"
+            name="imagen"
+        >
     </div>
+    <?php if(isset($producto->imagenActual)){ ?>
+        <p> Imagen Actual</p>
+        <div class="Imagen__formulario">
+            <img src="<?php echo './build/img/'.$producto->imagen;?>.jpg" alt="Imagen Producto">
+        </div>
+        <?php } ?>
+
     <div class="campo">
         <label for="categoria">Categoria</label>
-        <input type="categoria" name="categoria" id="categoria" placeholder="Categoria" value="<?php echo $producto->categoriaId ?>"/>
+        <input type="number" name="categoriaId" id="categoriaId" placeholder="Categoria" value="<?php echo $producto->categoriaId ?>"/>
     </div>
 
 

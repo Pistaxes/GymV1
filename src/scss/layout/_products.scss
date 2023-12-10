@@ -2,6 +2,8 @@
 @use 'base/mixins' as m;
 
 .productos {
+    margin-left: 10%;
+    margin-right: 10%;
     display: grid;
     gap: 20px;
     justify-items: center;
@@ -87,4 +89,31 @@
 .contenido p {
     margin-bottom: 5px;
     font-size: 16px;
+}
+
+.productos-lista{
+    text-decoration: none;
+    li{
+        text-decoration: none;
+    }
+    img{
+        max-width: 300px;
+    }
+}
+
+.productos-carro{
+    margin-left: 10%;
+    margin-right: 10%;
+    
+    
+}
+
+.header-productos{
+    display: flex;
+    justify-content: space-between;
+    
+}
+.contenedor-productos{
+    padding-left:20px ;
+    padding-right: 20px;
 }

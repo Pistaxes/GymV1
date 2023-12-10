@@ -7,12 +7,13 @@
             "MVC\\":"./",
             "Controllers\\" : "./controllers",
             "Model\\" : "./models",
-            "Classes\\" : "./classes"
-
+            "Classes\\" : "./classes",
+            "": "src/"
         }
     },
     "require": {
         "phpmailer/phpmailer": "^6.8",
-        "intervention/image": "^2.7"
+        "intervention/image": "^2.7",
+        "stripe/stripe-php": "^13.5"
     }
 }

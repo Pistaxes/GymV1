@@ -59,6 +59,8 @@ $router->post('/eliminar',[ProductoController::class,'eliminar']);
 
 $router->get('/carrito',[ProductoController::class,'carrito']);
 
+$router->post('/pagar',[ProductoController::class,'pagar']);
+
 
 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador

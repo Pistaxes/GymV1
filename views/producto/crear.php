@@ -9,7 +9,7 @@
         include_once __DIR__ . '/../templates/alertas.php'; 
 ?>
 
-<form action="/crear" method="POST" class="formulario">
+<form method="POST" action="/crear" enctype="multipart/form-data" class="formulario">
     <?php include_once __DIR__ . '/formulario.php'; ?>
 
 <input type="submit" class="boton" value="Guardar producto">

@@ -1,16 +1,16 @@
-<section class="login">
+<div class="contenedor-admin">
 <h1 class="nombre-pagina"> Productos </h1>
 
 <p class="descripcion-pagina"> Administracion de productos</p>
 
 <?php include_once __DIR__ . '/../templates/barra.php'; ?>
 
-<ul class="servicios">
+<ul class="productos-lista">
     
     <?php foreach($productos as $producto){ ?>
         
         <li>
-        <h2> Productos</h2>
+        <h2>Productos</h2>
             <p>Nombre: <span> <?php echo $producto->nombre; ?></span></p>
             <p>Precio: <span> <?php echo $producto->precio; ?></span></p>
             <img src='../build/img/<?php echo $producto->imagen; ?>.jpg'></img>
@@ -26,4 +26,4 @@
         </li>
    <?php } ?>
 </ul>
-    </section >
+    </div >

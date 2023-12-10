@@ -105,6 +105,7 @@ class ActiveRecord {
             $resultado = $this->actualizar();
         } else {
             // Creando un nuevo registro
+            
             $resultado = $this->crear();
         }
         return $resultado;
@@ -159,8 +160,6 @@ class ActiveRecord {
 
         // Resultado de la consulta
         //Para debuguear los insert
-        //return json_encode(['query'=>$query]);
-        //debuguear($query);
         $resultado = self::$db->query($query);
         
         return [
