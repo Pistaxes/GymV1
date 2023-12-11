@@ -9,7 +9,7 @@ function iniciarApp(){
 
 async function consultarApi(){
     try {
-        const url = 'http://localhost:3000/api/productos';
+        const url = '/api/productos';
         const resultado = await fetch(url);
         const productos = await resultado.json();
         console.log(productos);
