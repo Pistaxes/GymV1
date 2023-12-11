@@ -14,6 +14,7 @@ try {
     'currency' => 'MXN',
     'source' => $token,
   ]);
+  echo '<h1>Tu pago a sido realizado con exito</h1>';
 } catch (\Stripe\Exception\CardError $e) {
   
   echo $e->getMessage();

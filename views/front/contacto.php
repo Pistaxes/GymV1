@@ -1,7 +1,7 @@
-<section class="home">
-            <video src="build/img/Background.mp4" class="video-slider active" autoplay muted loop></video>
-            <div class="content active">
-                <h1>Contacto.</h1>
+<section class="video-container">
+            <video src="build/img/video.mp4" class="video-slider active" autoplay muted loop id="bg-video"></video>
+            <div class="content">
+                <h1 class="titulo-contacto">Contacto.</h1>
                 <form name="sentMessage" id="contactForm" novalidate="">
             <div class="row">
               <div class="col-md-6">

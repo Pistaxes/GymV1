@@ -1,5 +1,5 @@
 <div class="contenedor-productos">
-<h1> Productos en la tienda</h1>
+<h1 class="titulo-productos"> Productos en la tienda</h1>
 <div class="header-productos">
 <h2> Bienvenido <span><?php echo $nombre; ?></span></h2>
 <a href="/carrito">
