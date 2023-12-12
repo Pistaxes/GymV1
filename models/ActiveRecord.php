@@ -138,12 +138,23 @@ class ActiveRecord {
         $resultado = self::consultarSQL($query);
         return array_shift( $resultado ) ;
     }
+    public static function agregarCarrito($idProducto,$usuarioId) {
+        $query = "CALL AgregarCarrito('$idProducto','$usuarioId')";
+        $resultado = self::$db->query($query);
+
+    }
     //Consulta Plana
     public static function SQL($consulta) {
         $query = $consulta;
         $resultado = self::consultarSQL($query);
         return $resultado ;
     }
+    public static function SQLCompra($consulta) {
+        $query = $consulta;
+        $resultado = self::$db->query($query);
+        return $resultado ;
+    }
+
 
     // crea un nuevo registro
     public function crear() {
@@ -196,5 +207,11 @@ class ActiveRecord {
         $resultado = self::$db->query($query);
         return $resultado;
     }
+    
+    public static function eliminarTabla($usuarioId) {
+        $query = "DELETE FROM carrito WHERE usuarioId = '$usuarioId'";
 
+        $resultado = self::$db->query($query);
+
+    }
 }

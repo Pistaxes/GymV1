@@ -11,13 +11,11 @@ function iniciarApp(){
 
 async function consultarApi(){
     try {
-        const productos = localStorage.getItem('carrito');
-        if(productos===null){
-            mostrarServicios([]);
-        }else{
-            mostrarServicios(JSON.parse(productos));
-        }
-        
+      const url = '/api/carrito';
+      const resultado = await fetch(url);
+        const productos = await resultado.json();
+        console.log(productos);
+        mostrarServicios(productos);
     } catch (error) {
         console.log(error);
     }
@@ -26,37 +24,38 @@ async function consultarApi(){
 function mostrarServicios(productos){
     
 
-    productos.forEach((producto,index) => {
-        const {id,nombre,precio,imagen} = producto;
+    productos.forEach((productoz,index) => {
+        const {producto,cantidad,precio,imagen,usuario,total} = productoz;
 
         const nombreProducto = document.createElement('h3');
         nombreProducto.classList.add('nombre-producto');
-        nombreProducto.textContent = nombre;
+        nombreProducto.textContent = producto;
 
         const precioProducto = document.createElement('p');
         precioProducto.classList.add('precio-producto');
         precioProducto.textContent = precio;
-        precioProducto.id='precio';
+  
         
         const imagenNombre= imagen;
         const imagenProducto= document.createElement('img');
         imagenProducto.src = `../build/img/${imagenNombre}.jpg`;
+
+        const cantidadProducto = document.createElement('p');
+        cantidadProducto.classList.add('cantidad');
+        cantidadProducto.textContent = cantidad;
+
+        const totalProducto = document.createElement('p');
+        totalProducto.classList.add('total');
+        totalProducto.textContent = total;
         
 
         const productoDiv = document.createElement('DIV');
         productoDiv.classList.add('producto');
-        productoDiv.dataset.idProducto= id;
+        
 
         const botones = document.createElement('DIV');
         botones.classList.add('botones');
         
-        
-        const cantidad = document.createElement('INPUT');
-        cantidad.placeholder = 'Cantidad';
-        cantidad.type='number';
-        cantidad.classList.add('cantidad');
-        cantidad.value=1;
-        cantidad.id = 'cantidad';
         
         
         
@@ -92,12 +91,11 @@ function mostrarServicios(productos){
         const resumenCantidad = document.createElement('P');
         resumenCantidad.textContent = precio;
 
-        costo=cantidad;
-
         productoDiv.appendChild(nombreProducto);
         productoDiv.appendChild(imagenProducto);
         productoDiv.appendChild(precioProducto);
-        productoDiv.appendChild(cantidad);
+        productoDiv.appendChild(cantidadProducto);
+        productoDiv.appendChild(totalProducto);
         productoDiv.appendChild(eliminar);
         
         
@@ -109,28 +107,19 @@ function mostrarServicios(productos){
     const comprar = document.createElement('button');
     comprar.textContent= 'Resumen';
     comprar.classList.add('boton');
+    
     comprar.addEventListener('click',()=>{
-        var cantidadProducto = document.querySelectorAll('.cantidad');
-        var costoProducto = document.querySelectorAll('.precio-producto');
-
-        if (cantidadProducto.length !== costoProducto.length) {
-            console.log('La cantidad de elementos no coincide.');
-            return;
-          }
-          var resultadoTotal= 0;
-
-          for (var i = 0; i < cantidadProducto.length; i++) {
-            var costo = parseFloat(costoProducto[i].innerText);
-            var cantidad = parseFloat(cantidadProducto[i].value);
-            if (!isNaN(cantidad) && !isNaN(costo)) {
-              resultadoTotal += cantidad * costo;
-            } else {
-              console.log('Uno o ambos valores no son números válidos.');
-              return;
-            }
-          }
           //Datos del resumen
-          comprarProductos(resultadoTotal);
+          const costos = [];
+          productos.forEach((producto) => {
+             costos.push(Number(producto.total));
+          });
+          
+          let suma = costos.reduce((total, numero) => {
+            return total + numero;
+          }, 0);
+          
+          comprarProductos(suma);
 
           
         
@@ -147,14 +136,11 @@ function comprarProductos(resultado){
             const Total = document.createElement('H2');
             Total.classList.add('precio-Final');
             Total.textContent = resultado;
-            const pasarela= document.createElement('BUTTON');
-            pasarela.classList.add('boton');
-            pasarela.textContent= 'Comprar con Stripe';
-
+            
             const inputMonto = document.getElementById('monto');
             inputMonto.value = resultado;
             texto.appendChild(Total);
-            texto.appendChild(pasarela);
+            
             document.querySelector('#productos').appendChild(texto);
 
     

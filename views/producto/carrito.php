@@ -4,13 +4,12 @@
 <div class="productos" id='productos'>
     
 
-
 </div>
 <div class="resumen" id="resumen">
 
 </div>
 
-<form action="/pagar" method="post" id="payment-form" class="">
+<form action="/pagar" method="post" id="payment-form" >
         <div>
             <label for="card-element">
                 Introduce los detalles de tu tarjeta de crédito:
@@ -25,9 +24,8 @@
         <input type="text" name="monto" id="monto" class="monto"/>
         <button type="submit" class="boton">Pagar</button>
     </form>
-                <?php 
-    $script="
-    <script src='build/js/carrito.js'></script>";
+    <?php 
+    $script="<script src='build/js/carrito.js'></script>";
     
 ?>
 

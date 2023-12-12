@@ -6,7 +6,7 @@ require_once '../vendor/autoload.php';
 
 $token = $_POST['stripeToken'];
 $total = $_POST['monto'];
-
+$nombre =$_POST['nombre'];
 try {
   
   $charge = \Stripe\Charge::create([
@@ -14,10 +14,15 @@ try {
     'currency' => 'MXN',
     'source' => $token,
   ]);
-  echo '<h1>Tu pago a sido realizado con exito</h1>';
+  echo '<h1>Tu pago a sido realizado con exito </h1>';
+  echo $nombre;
+
 } catch (\Stripe\Exception\CardError $e) {
   
   echo $e->getMessage();
 }
+
+$script="<script src='build/js/graficas.js'></script>";
+
 
 ?>

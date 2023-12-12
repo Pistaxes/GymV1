@@ -50,19 +50,18 @@ function mostrarServicios(productos){
         carrito.id = id;
 
         
-        carrito.addEventListener('click', ()=>{
+        carrito.addEventListener ('click', async ()=>{
             const productoCarrito = {id: id,nombre:nombre,precio:precio, imagen:imagen}
-            const listaCarrito = localStorage.getItem('carrito');
-            if(listaCarrito=== null){
-                const carrito = [];
-                carrito.push(productoCarrito);
-                localStorage.setItem('carrito',JSON.stringify(carrito));
+            const response = await fetch('/api/carrito',{
+            method:"POST",
+            headers: {'Content-Type': 'application/json',}, body: JSON.stringify(productoCarrito)
+        });
+        
+        if(response.ok){
+            const data = await response.json();
+            console.log(data);
+        }
 
-            }else{
-                const carrito=JSON.parse(listaCarrito);
-                carrito.push(productoCarrito);
-                localStorage.setItem('carrito',JSON.stringify(carrito));
-            }
 
         });
         productoDiv.appendChild(nombreProducto);
@@ -75,4 +74,8 @@ function mostrarServicios(productos){
 
         document.querySelector('#productos').appendChild(productoDiv);
     });
+
+    function addProduct(){
+        
+    }
 }

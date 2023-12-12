@@ -58,10 +58,20 @@ $router->post('/actualizar',[ProductoController::class,'actualizar']);
 $router->post('/eliminar',[ProductoController::class,'eliminar']);
 
 $router->get('/carrito',[ProductoController::class,'carrito']);
+$router->post('/carrito',[ProductoController::class,'carrito']);
 
 $router->post('/pagar',[ProductoController::class,'pagar']);
 
+$router->get('/api/carrito',[APIController::class,'carroGet']);
+$router->post('/api/carrito',[APIController::class,'agregar']);
 
+
+//Graficas
+
+$router->get('/api/graficas',[APIController::class,'graficas']);
+
+
+$router->get('/grafica',[ProductoController::class,'graficas']);
 
 // Comprueba y valida las rutas, que existan y les asigna las funciones del Controlador
 $router->comprobarRutas();

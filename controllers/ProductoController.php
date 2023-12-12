@@ -3,6 +3,8 @@
 namespace Controllers;
 use MVC\Router;
 use Model\Producto;
+use Model\DetalleCarro;
+use Model\DetalleCompra;
 use Intervention\Image\ImageManagerStatic as Image;
 use Stripe\Stripe;
 
@@ -13,17 +15,18 @@ class ProductoController{
     public static function index(Router $router){
 
         session_start();
-        
+        $productos= Producto::all();
         
        $router->render('producto/index',[
         'nombre'=> $_SESSION['nombre'],
-        
+        'productos'=>$productos
             ]);
     }
 
     public static function mostrar(Router $router){
         session_start();
         isAdmin();
+
         $productos= Producto::all();
         
        $router->render('producto/mostrar',[
@@ -130,18 +133,49 @@ class ProductoController{
     }
 
     public static function carrito(Router $router){
-        $router->render('producto/carrito',[]);
+        session_start();
+        
+        
+
+        if($_SERVER['REQUEST_METHOD']=== 'POST'){
+            $id= $_POST['id'];
+            $producto= Producto::find($id);
+        }
+        $router->render('producto/carrito',[
+            'nombre'=> $_SESSION['nombre'],
+            'productos' => $productos,
+        ]);
     }
-
+//asdasd
     public static function pagar(Router $router){
+        session_start();
+        if($_SERVER['REQUEST_METHOD']=== 'POST'){
+            //Agregar a la tabla de Detalle compra
+            $consulta ="INSERT INTO detallecompra (usuarioId, productoId, fecha)
+            SELECT cc.usuarioId, cc.productoId, CURDATE() as fecha
+            FROM carrito cc;";
 
+            $compra = DetalleCompra::SQLCompra($consulta);
+            $id= $_SESSION['id'];
+            $producto= Producto::eliminarTabla($id);
+        }
         
         $router->render('producto/pagar',[
             'nombre'=> $_SESSION['nombre'],
-            'producto' => $producto,
-            'aletas'=>$alertas
+
+            
         ]);
         
 
     }
+
+    public static function graficas(Router $router){
+        session_start();
+        isAdmin();
+
+        $router->render('admin/graficas',[
+            'nombre'=> $_SESSION['nombre'],
+        ]);
+    }
+   
 }
