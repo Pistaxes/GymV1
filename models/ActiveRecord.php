@@ -214,4 +214,11 @@ class ActiveRecord {
         $resultado = self::$db->query($query);
 
     }
+
+    public static function eliminarCarrito($usuarioId) {
+        $query = "DELETE FROM carrito WHERE id = '$usuarioId'";
+
+        $resultado = self::$db->query($query);
+
+    }
 }

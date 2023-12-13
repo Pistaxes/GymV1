@@ -25,7 +25,7 @@ function mostrarServicios(productos){
     
 
     productos.forEach((productoz,index) => {
-        const {producto,cantidad,precio,imagen,usuario,total} = productoz;
+        const {id,producto,cantidad,precio,imagen,usuario,total} = productoz;
 
         const nombreProducto = document.createElement('h3');
         nombreProducto.classList.add('nombre-producto');
@@ -62,30 +62,22 @@ function mostrarServicios(productos){
         const eliminar = document.createElement('button');
         eliminar.textContent= 'Eliminar';
         eliminar.classList.add('boton');
-        eliminar.addEventListener('click',()=>{
-            Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!"
-              }).then((result) => {
-                if (result.isConfirmed) {
-                    var local = JSON.parse(localStorage.getItem('carrito'));
-                    local.splice(index,1);
-                    localStorage.setItem('carrito',JSON.stringify(local));
-                    document.querySelector('#productos').innerHTML='';
-                    consultarApi();
-                  Swal.fire({
-                    title: "Deleted!",
-                    text: "Your file has been deleted.",
-                    icon: "success"
-                  });
-                }
-              });
-           
+        eliminar.dataset.id = id;
+        eliminar.addEventListener('click', async ()=>{
+
+          const resp= await AlertConfirm({title:'Quieres eliminar este producto?'});
+          if(resp){
+            const response = await fetch('/api/carrito/eliminar?id='+ id, {
+              method: 'POST'
+            });
+            if(response.ok){
+              const data = await response.json();
+              console.log(data);
+              const div = document.querySelector('#productos');
+              div.innerHTML='';
+              consultarApi();
+            }
+          }
         });
 
         const resumenCantidad = document.createElement('P');
@@ -127,6 +119,29 @@ function mostrarServicios(productos){
     document.querySelector('#productos').appendChild(comprar);
     
 
+}
+
+const AlertConfirm = ({ icon = 'warning', title, text }) => {
+  const result =  Swal.fire({
+      title: title,
+      text: text,
+      icon: icon,
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Aceptar',
+      cancelButtonText: 'Cancelar',
+      customClass: {
+          popup: 'border-radius-2',
+        }
+  }).then((result) => {
+      if (result.isConfirmed) {
+          return true
+      } else {
+          return false
+      }
+  })
+  return result
 }
 
 function comprarProductos(resultado){

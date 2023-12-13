@@ -64,6 +64,7 @@ $router->post('/pagar',[ProductoController::class,'pagar']);
 
 $router->get('/api/carrito',[APIController::class,'carroGet']);
 $router->post('/api/carrito',[APIController::class,'agregar']);
+$router->post('/api/carrito/eliminar',[APIController::class,'eliminarUsuario']);
 
 
 //Graficas

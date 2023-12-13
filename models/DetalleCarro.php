@@ -5,8 +5,9 @@ namespace Model;
 class DetalleCarro extends ActiveRecord{
 
     protected static $tabla = 'carrito';
-    protected static $columnasDB = ['producto','cantidad','precio','imagen','usuario','total'];
+    protected static $columnasDB = ['id','producto','cantidad','precio','imagen','usuario','total'];
 
+    public $id;
     public $producto;
     public $cantidad;
     public $precio;
@@ -15,6 +16,7 @@ class DetalleCarro extends ActiveRecord{
     public $total;
 
     public function __construc($args =[]){
+        $this->id =$args['id']  ?? null;
         $this->producto =$args['producto']  ?? null;
         $this->cantidad =$args['cantidad']  ?? '';
         $this->precio =$args['precio']  ?? '';

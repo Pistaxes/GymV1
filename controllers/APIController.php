@@ -45,7 +45,7 @@ class APIController{
         //CONSULTA SQL
         session_start();
         $id= $_SESSION['id'];
-        $consulta = "SELECT p.nombre as producto,car.cantidad,p.precio,p.imagen,us.nombre as usuario, p.precio * car.cantidad as total
+        $consulta = "SELECT car.id,p.nombre as producto,car.cantidad,p.precio,p.imagen,us.nombre as usuario, p.precio * car.cantidad as total
         FROM carrito car
         INNER JOIN producto p ON car.productoId = p.id
         INNER JOIN usuarios us ON car.usuarioId = us.id WHERE car.usuarioId = '${id}';";
@@ -61,6 +61,29 @@ class APIController{
         INNER JOIN usuarios us ON dc.usuarioId = us.id";
         $productos = DetalleCarro::SQL($consulta);
         echo json_encode($productos);
+    }
+    public static function eliminarUsuario(){
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            try{
+            // Obtener el ID del dato a eliminar desde la URL
+            $id = $_GET['id'];
+            
+            $productos= DetalleCarro::eliminarCarrito($id);
+
+            $array = array(
+                "error" => false,
+                "message" => 'Se Elimino' 
+            );
+            echo json_encode($array);
+            }catch(Exception $e){
+                $array = array(
+                    "error" => true,
+                    "message" => $e->getMessage()
+                );
+                echo json_encode($array);
+            }
+        }
     }
 
 }

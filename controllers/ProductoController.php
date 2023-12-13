@@ -157,7 +157,7 @@ class ProductoController{
 
             $compra = DetalleCompra::SQLCompra($consulta);
             $id= $_SESSION['id'];
-            $producto= Producto::eliminarTabla($id);
+            
         }
         
         $router->render('producto/pagar',[
