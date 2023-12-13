@@ -33,7 +33,7 @@ function mostrarServicios(productos){
 
         const precioProducto = document.createElement('p');
         precioProducto.classList.add('precio-producto');
-        precioProducto.textContent = precio;
+        precioProducto.textContent = 'PrecioUnitario: '+precio;
   
         
         const imagenNombre= imagen;
@@ -42,11 +42,11 @@ function mostrarServicios(productos){
 
         const cantidadProducto = document.createElement('p');
         cantidadProducto.classList.add('cantidad');
-        cantidadProducto.textContent = cantidad;
+        cantidadProducto.textContent = 'Cantidad: '+cantidad;
 
         const totalProducto = document.createElement('p');
         totalProducto.classList.add('total');
-        totalProducto.textContent = total;
+        totalProducto.textContent = 'Total: '+total;
         
 
         const productoDiv = document.createElement('DIV');
@@ -61,7 +61,7 @@ function mostrarServicios(productos){
         
         const eliminar = document.createElement('button');
         eliminar.textContent= 'Eliminar';
-        eliminar.classList.add('boton');
+        eliminar.classList.add('boton-eliminar');
         eliminar.dataset.id = id;
         eliminar.addEventListener('click', async ()=>{
 

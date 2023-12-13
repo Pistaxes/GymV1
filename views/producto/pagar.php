@@ -5,7 +5,7 @@ require_once '../vendor/autoload.php';
 
 \Stripe\Stripe::setApiKey('sk_test_51OKXdZG1jX1oNbL4YMzT6NBXFedxRir5t0QFZhxyMoGWyXvUjaL2Drx8E4jzEg5gepPwIXdBCQPbk1qJQdawIOic00XHxwstAo');
 ob_start();
-use Model\DetalleCompra;
+use Model\Ticket;
 use Model\Producto;
 use Dompdf\Dompdf;
 use TCPDF;
@@ -29,7 +29,7 @@ try {
   join producto p on c.productoId = p.id
   where u.id = '${id}'
   group by 1;";
-  $resultado = DetalleCompra::SQL($consulta);
+  $resultado = Ticket::SQL($consulta);
 
   $producto= Producto::eliminarTabla($id);
   
@@ -47,22 +47,26 @@ $html = '<h1>Ticket de Compra</h1>';
 $html .= '<table border="1" style="width:100%;border-collapse:collapse;">
     <tr>
         <th>ID</th>
-        <th>Usuario ID</th>
-        <th>Producto ID</th>
-        <th>Fecha</th>
+        <th>Producto</th>
+        <th>Precio Unitario ID</th>
+        <th>Subtotal</th>
     </tr>';
-
+$datos=[];
 // Generar filas con los detalles de compra
 foreach ($resultado as $detalle) {
     $html .= '<tr>';
     $html .= '<td>' . $detalle->id . '</td>';
-    $html .= '<td>' . $detalle->usuarioId . '</td>';
-    $html .= '<td>' . $detalle->productoId . '</td>';
-    $html .= '<td>' . $detalle->fecha . '</td>';
+    $html .= '<td>' . $detalle->nombre . '</td>';
+    $html .= '<td>' . $detalle->precioUnitario . '</td>';
+    $html .= '<td>' . $detalle->subtotal . '</td>';
     $html .= '</tr>';
+    $datos[]= $detalle->subtotal;
 }
-
+$total = (array_sum($datos));
 $html .= '</table>';
+
+$html .='<h2>Tu total a pagar es de $ '.$total.'</h2>';
+
 
 // Escribir el HTML en el PDF
 $pdf->writeHTML($html, true, false, true, false, '');

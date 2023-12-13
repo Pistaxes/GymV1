@@ -20,7 +20,7 @@
             
             <form action="/eliminar" method="POST">
                 <input type="hidden" name="id" value="<?php echo $producto->id; ?>">
-                <input type="submit" value="Borrar" class="boton">
+                <input type="submit" value="Borrar" class="boton-eliminar">
             </form>
             </div>
         </li>
