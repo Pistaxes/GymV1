@@ -17,15 +17,18 @@ class Email{
 
     public function enviarConfirmacion(){
         $mail = new PHPMailer();
-        $mail->isSMTP();
-        $mail->Host = $_ENV['EMAIL_HOST'];
-        $mail->SMTPAuth = true;
-        $mail->Port = $_ENV['EMAIL_PORT'];
-        $mail->Username = $_ENV['EMAIL_USER'];
-        $mail->Password = $_ENV['EMAIL_PASS'];
+    $mail->isSMTP();
+    $mail->CharSet = 'UTF-8';
+    $mail->Host = $_ENV['EMAIL_HOST'];
+    $mail->SMTPAuth = true;
+    $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for GMail
+    $mail->Port = $_ENV['EMAIL_PORT'];
+    $mail->Username = $_ENV['EMAIL_USER'];
+    $mail->Password = $_ENV['EMAIL_PASS'];
 
-        $mail->setFrom('cuentas@integra.com');
-        $mail->addAddress('cuentas@integra.com','Integra.com');
+    // Configuración del remitente y destinatario
+    $mail->From="sceii.itcelaya@gmail.com";
+    $mail->addAddress($this->email);
         $mail -> Subject = 'Confirma tu cuenta';
         $mail->isHTML(TRUE);
         $mail->CharSet= 'UTF-8';
@@ -48,15 +51,18 @@ class Email{
 
     public function enviarInstrucciones(){
         $mail = new PHPMailer();
-        $mail->isSMTP();
-        $mail->Host = $_ENV['EMAIL_HOST'];
-        $mail->SMTPAuth = true;
-        $mail->Port = $_ENV['EMAIL_PORT'];
-        $mail->Username = $_ENV['EMAIL_USER'];
-        $mail->Password = $_ENV['EMAIL_PASS'];
+    $mail->isSMTP();
+    $mail->CharSet = 'UTF-8';
+    $mail->Host = $_ENV['EMAIL_HOST'];
+    $mail->SMTPAuth = true;
+    $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for GMail
+    $mail->Port = $_ENV['EMAIL_PORT'];
+    $mail->Username = $_ENV['EMAIL_USER'];
+    $mail->Password = $_ENV['EMAIL_PASS'];
 
-        $mail->setFrom('cuentas@integra.com');
-        $mail->addAddress('cuentas@integra.com','Integra.com');
+    // Configuración del remitente y destinatario
+    $mail->From="sceii.itcelaya@gmail.com";
+    $mail->addAddress($this->email);
         $mail -> Subject = 'Restablece tu password';
         $mail->isHTML(TRUE);
         $mail->CharSet= 'UTF-8';
